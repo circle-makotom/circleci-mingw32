@@ -1,0 +1,15 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+
+    steps:
+      - checkout
+      - run: sudo apt update
+      - run: sudo apt upgrade -y
+      - run: sudo apt install -y gcc gcc-mingw-w64
+      - run: i686-w64-mingw32-gcc-win32 -o hello.exe hello.c
+      - store_artifacts:
+          path: hello.exe
